@@ -7,7 +7,7 @@ appname: "yapc2016"
 
 # The default layout to use for your application (located in
 # views/layouts/main.tt)
-layout: "main"
+layout: "bt"
 
 # When the charset is set to UTF-8 Dancer will handle for you
 # all the magic of encoding and decoding. You should not care
@@ -18,14 +18,21 @@ charset: "UTF-8"
 # simple: default and very basic template engine
 # template_toolkit: TT
 
-template: "simple"
+# template: "simple"
 
-# template: "template_toolkit"
-# engines:
-#   template_toolkit:
-#     start_tag: '[%'
-#     end_tag:   '%]'
+template: "template_toolkit"
+engines:
+  template_toolkit:
+    start_tag: '[%'
+    end_tag:   '%]'
+  JSON:
+    convert_blessed: '1'
 
 # For session support enable the following line and see Dancer::Session
-# session: "YAML"
+session: "MyMongoDB"
+session_name: "sessionid"
+session_expires: "1y"
 
+mongodb_name: "yapc2016"
+
+serializer: "JSON"
