@@ -71,7 +71,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" data-toggle="modal" data-target="#loginModal">登录</a></li>
-                        <li><a href="#">注册</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#registerModal">注册</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -83,7 +83,7 @@
         </div> <!-- /container -->
 
         <!-- login modal -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login Modal">
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -91,7 +91,7 @@
                         <h4 class="modal-title" id="myModalLabel">用户登录</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="alert alert-danger"><strong>错误！</strong>密码必须填写</div>
+                        <div class="alert alert-danger"><strong>错误！</strong><span>密码必须填写</span></div>
                         <form>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">昵称</label>
@@ -112,6 +112,37 @@
             </div>
         </div>
         <!-- login modal end -->
+
+        <!-- register modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">用户注册</h4>
+                    </div>
+                    <form id="registerForm">
+                        <div class="modal-body">
+                            <div class="alert alert-danger" id="registerErrorDiv" style="display:none"><strong>错误！</strong><span>密码必须填写</span></div>
+                            <div class="form-group">
+                                <label for="registerNick">昵称</label>
+                                <input type="text" class="form-control" id="registerNick" placeholder="昵称">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPass">密码</label>
+                                <input type="password" class="form-control" id="registerPass" placeholder="密码">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="pull-left">已有账号？前往登录</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" id="registerButton">注册</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- register modal end -->
         
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -120,5 +151,6 @@
         <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="/javascripts/layout.js"></script>
     </body>
 </html>
