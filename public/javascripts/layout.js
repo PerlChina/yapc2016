@@ -89,7 +89,8 @@ function api_request(method, url, data, success_cb, failed_cb) {
             $(".js-login-links").hide();
             $(".js-user-links").show();
         }, function() {
-
+            $(".js-user-links").hide();
+            $(".js-login-links").show();
         });
     }
 

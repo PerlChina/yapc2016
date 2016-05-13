@@ -35,7 +35,16 @@ post '/api/user/register' => sub {
     check_required($nick, "昵称必须填写");
     check_required($pass, "密码必须填写");
     my $o = {nick => $nick, pass => passwd($pass), createAt => time, updateAt => time, role => 'user'};
-    my $res = db->coll('users')->insert_one($o);
+    my $res;
+    eval {
+        $res= db->coll('users')->insert_one($o);
+    };
+    if ($@) {
+        if ($@ =~ /E11000 duplicate/) {
+            fail("昵称已被占用");
+        }
+        fail("网络不给力啊");
+    }
     $o->{_id} = $res->inserted_id;
     delete $o->{'pass'};
     session 'user' => $o;
@@ -53,7 +62,7 @@ post '/api/user/login' => sub {
         session 'user' => $user;
         succeed $user;
     } else {
-        fail("用户名或密码错误");
+        fail("昵称或密码错误");
     }
 };
 
