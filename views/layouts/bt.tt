@@ -95,11 +95,11 @@
                         <form>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">昵称</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="昵称">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="昵称" maxlength="50">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">密码</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" maxlength="50">
                             </div>
                         </form>
                     </div>
@@ -126,11 +126,11 @@
                             <div class="alert alert-danger" id="registerErrorDiv" style="display:none"><strong>错误！</strong><span>密码必须填写</span></div>
                             <div class="form-group">
                                 <label for="registerNick">昵称</label>
-                                <input type="text" class="form-control" id="registerNick" placeholder="昵称">
+                                <input type="text" class="form-control" id="registerNick" placeholder="昵称" maxlength="50">
                             </div>
                             <div class="form-group">
                                 <label for="registerPass">密码</label>
-                                <input type="password" class="form-control" id="registerPass" placeholder="密码">
+                                <input type="password" class="form-control" id="registerPass" placeholder="密码" maxlength="50">
                             </div>
                         </div>
                         <div class="modal-footer">
