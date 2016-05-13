@@ -1,0 +1,1 @@
+<div class="alert alert-info" role="alert">您已经报名该会议，来自[% row.city %]，T恤尺寸[% row.item('size') %]。<a href="/c/[% conferenceName %]/quit">取消报名</a></div>

@@ -1,0 +1,25 @@
+<div class="page-header">
+    <h2>报名参加[% session.conference.title %]</h2>
+</div>
+[% IF vars.error %]
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>错误！</strong>[% vars.error %]
+    </div>
+[% END %]
+<form method="POST">
+    <div class="form-group">
+        <label>来自哪个城市</label>
+        <input type="text" class="form-control" name="city" placeholder="所在城市" maxlength="30" value="[% params.city %]">
+    </div>
+    <div class="form-group">
+        <label>T恤尺寸</label>
+        <select class="form-control" name="size">
+            <option value="">- 请选择 - </option>
+            [% FOREACH item = [ 'XXXL', 'XXL', 'XL',  'L', 'M', 'S', 'XS', 'XXS', 'XXXS' ] %]
+                <option value="[% item %]"[% IF params.size == item %] selected[% END %]>[% item %]</option>
+            [% END %]
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">报名</button>
+</form>

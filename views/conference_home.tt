@@ -1,1 +1,28 @@
-<h2>[% item.title %]</h2>
+[% USE date %]
+<div class="jumbotron">
+    <h1>快来参加 PerlChina 2016 大会</h1>
+    <p>PerlChina 2016 大会将于2016年8月6日在北京举行。大会时间1天，向 Perl 等开源技术爱好者免费开放。我们估计会有 200 人，包括学生、程序员、运维人员、其他 IT 专业人士、演讲人和赞助商，注册参加大会。</p>
+    <p><a class="btn btn-primary btn-lg" href="/c/[% session.conference.name %]/join" role="button">立即报名</a></p>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">大会说明</h3>
+    </div>
+    <div class="panel-body">
+        <p>大会的演讲将在两个厅同时进行。其中一个以 Perl 开发内容为主，偏培训性质。另一个为与 Perl 相关的其他领域的主题。</p>
+        <p>参加大会的朋友请先创建新用户，然后报名参加本次会议（报名时请注意选择T恤尺码）。演讲的朋友请登录后提交演讲主题，并随后提交演讲的幻灯片（不强制）。</p>
+        <p>当天正式演讲结束后，会有闪电演讲环节。闪电演讲限制时间为 5 分钟。任何内容都可以参加闪电演讲，欢迎大家踊跃报名。</p>
+    </div>
+</div>
+
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">最新消息</h3>
+    </div>
+    <div class="panel-body">
+        [% FOREACH item IN news %]
+            <p>[% date.format(item.createAt, "%Y-%m-%d %H:%M") %] [% item.msg %]</p>
+        [% END %]
+    </div>
+</div>

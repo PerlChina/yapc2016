@@ -22,6 +22,7 @@ sub succeed {
 }
 
 sub fail {
+    var error => $_[0];
     halt({error => $_[0]});
 }
 

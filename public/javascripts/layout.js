@@ -99,6 +99,7 @@ function api_request(method, url, data, success_cb, failed_cb) {
             api_get("/api/user/logout", {}, function(o) {
                 $(".js-user-links").hide();
                 $(".js-login-links").show();
+                //window.location = "/";
             });
         }
     }

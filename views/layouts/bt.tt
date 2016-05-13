@@ -5,11 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="PerlChina大会2016">
+        <meta name="description" content="PerlChina 2016 大会">
         <meta name="author" content="Achilles Xu">
         <link rel="icon" href="/favicon.ico">
 
-        <title>[% IF page_title %][% page_title %] - [% END %]PerlChina大会2016</title>
+        <title>[% IF page_title %][% page_title %] - [% END %]PerlChina 2016 大会</title>
 
         <!-- Bootstrap core CSS -->
         <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,17 +43,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">PerlChina大会2016</a>
+                    <a class="navbar-brand" href="/">PerlChina 2016 大会</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li[% IF page_channel == 'home' %] class="active"[% END %]><a href="/">首页</a></li>
-                        <li><a href="#about">日程</a></li>
-                        <li><a href="#about">地址</a></li>
-                        <li><a href="#about">直播</a></li>
-                        <li><a href="#about">报名</a></li>
-                        <li><a href="#contact">提交演讲</a></li>
-                        <li><a href="#contact">赞助</a></li>
+                        <li[% IF page_channel == 'schedule' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/schedule">日程</a></li>
+                        <li[% IF page_channel == 'address' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/address">地址</a></li>
+                        <li[% IF page_channel == 'live' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/live">直播</a></li>
+                        <li[% IF page_channel == 'join' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/join">报名</a></li>
+                        <li[% IF page_channel == 'talk' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/addtalk">提交演讲</a></li>
+                        <li[% IF page_channel == 'sponsor' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/sponsor">赞助</a></li>
                         <!--
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -79,9 +79,39 @@
             </div>
         </nav>
 
-
         <div class="container">
-            [% content %]
+            <div class="row">
+                <div class="col-sm-8 col-md-10">
+                    [% content %]
+                </div>
+                <div class="col-sm-4 col-md-2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">赞助/合作</h3>
+                        </div>
+                        <div class="panel-body">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">以往大会</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a href="http://conference.perlchina.org/bjpw2013" target="_blank">2013</a><br>
+                            <a href="http://conference.perlchina.org/bjpw2011" target="_blank">2011</a><br>
+                            <a href="http://conference.perlchina.org/bjpw2009" target="_blank">2009</a><br>
+                            <a href="http://conference.perlchina.org/bjpw2008" target="_blank">2008</a><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <footer>
+                <p>Powered by <a href="http://www/perl.org/" target="_blank">Perl</a> and <a href="http://perldancer.org/" target="_blank">Dancer</a></p>
+            </footer>
         </div> <!-- /container -->
 
         <!-- login modal -->
