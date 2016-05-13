@@ -37,7 +37,32 @@ function api_request(method, url, data, success_cb, failed_cb) {
     var registerNick = $("#registerNick");
     var registerPass = $("#registerPass");
     var registerErrorDiv = $("#registerErrorDiv");
+    var loginModal = $("#loginModal");
+    var loginForm = $("#loginForm");
+    var loginNick = $("#loginNick");
+    var loginPass = $("#loginPass");
+    var loginErrorDiv = $("#loginErrorDiv");
     
+    function loginFormSubmit() {
+        var nick = loginNick.val();
+        var pass = loginPass.val();
+        $("input,button", loginForm).attr("disabled", "disabled");
+        loginErrorDiv.hide();
+        api_post("/api/user/login", {nick: nick, pass: pass}, function(o) {
+            loginModal.modal('hide');
+            $("input,button",loginForm).removeAttr("disabled");
+            $("#navUserNick").text(o.nick);
+            $(".js-login-links").hide();
+            $(".js-user-links").show();
+            alert("登录成功");
+        }, function(error) {
+            $("span", loginErrorDiv).text(error);
+            loginErrorDiv.show();
+            $("input,button",loginForm).removeAttr("disabled");
+        });
+        return false;
+    }
+
     function registerFormSubmit() {
         var nick = registerNick.val();
         var pass = registerPass.val();
@@ -79,6 +104,7 @@ function api_request(method, url, data, success_cb, failed_cb) {
 
     // events
     registerForm.submit(registerFormSubmit);
+    loginForm.submit(loginFormSubmit);
     $("#navLogout").click(logout);
     
     // init

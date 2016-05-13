@@ -42,6 +42,21 @@ post '/api/user/register' => sub {
     succeed($o);
 };
 
+post '/api/user/login' => sub {
+    my $nick = param 'nick';
+    my $pass = param 'pass';
+    check_required($nick, "昵称必须填写");
+    check_required($pass, "密码必须填写");
+    my $user = db->coll('users')->find_one({nick => $nick, pass => passwd($pass)});
+    if ($user) {
+        delete $user->{pass};
+        session 'user' => $user;
+        succeed $user;
+    } else {
+        fail("用户名或密码错误");
+    }
+};
+
 get '/api/account/info' => sub {
     my $user = session 'user';
     if ($user) {
