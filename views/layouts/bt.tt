@@ -70,8 +70,10 @@
                         -->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" data-toggle="modal" data-target="#loginModal">登录</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#registerModal">注册</a></li>
+                        <li class="js-user-links" style="display:none"><a href="#" id="navUserNick">aaa</a></li>
+                        <li class="js-user-links" style="display:none"><a href="#" id="navLogout">注销</a></li>
+                        <li class="js-login-links"><a href="#" data-toggle="modal" data-target="#loginModal">登录</a></li>
+                        <li class="js-login-links"><a href="#" data-toggle="modal" data-target="#registerModal">注册</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

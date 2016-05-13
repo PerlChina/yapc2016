@@ -6,6 +6,9 @@ use Common;
 
 our $VERSION = '0.1';
 
+db->coll('users')->indexes->create_one( [ nick => 1 ], { unique => 1 } );
+db_clear();
+
 get '/' => sub {
     redirect '/c/2016';
 };
@@ -31,7 +34,25 @@ post '/api/user/register' => sub {
     my $pass = param 'pass';
     check_required($nick, "昵称必须填写");
     check_required($pass, "密码必须填写");
-    db->coll('users')->insert_one({nick => $nick, pass => passwd($pass), createAt => time, updateAt => time, role => 'user'});
+    my $o = {nick => $nick, pass => passwd($pass), createAt => time, updateAt => time, role => 'user'};
+    my $res = db->coll('users')->insert_one($o);
+    $o->{_id} = $res->inserted_id;
+    delete $o->{'pass'};
+    session 'user' => $o;
+    succeed($o);
+};
+
+get '/api/account/info' => sub {
+    my $user = session 'user';
+    if ($user) {
+        succeed($user);
+    } else {
+        fail("没有这个用户");
+    }
+};
+
+get '/api/user/logout' => sub {
+    session 'user' => undef;
     succeed;
 };
 
