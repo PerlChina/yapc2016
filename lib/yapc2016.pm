@@ -55,8 +55,52 @@ get '/c/:conferenceName/quit' => sub {
     send_error("没有这个会议", 404) unless $conference;
 
     db->coll("conference_members")->delete_one({user_id => $user->{_id}, conference_id => $conference->{_id}});
-    db->coll("news")->insert_one({msg => $user->{nick} . " 取消报名了" . $conference->{title}, createAt => time });
+    #db->coll("news")->insert_one({msg => $user->{nick} . " 取消报名了" . $conference->{title}, createAt => time });
     template 'success' => {page_title => "取消报名", page_channel => "join", msg => "您已取消参加该会议", redirect_url => '/c/'.$conferenceName . "/join"};
+};
+
+get '/c/:conferenceName/deltalk/:talkId' => sub {
+    my $user = session 'user';
+    send_error("未登录", 401) unless $user;
+    my $conferenceName = param 'conferenceName';
+    my $conference = db->coll('conferences')->find_one({name => $conferenceName});
+    send_error("没有这个会议", 404) unless $conference;
+    my $talkId = param('talkId');
+
+    db->coll('talks')->update_one({_id => MongoDB::OID->new($talkId), user_id => $user->{_id}}, {'$set' => {status => 'deleted'}});
+    redirect "/c/" . $conferenceName . "/addtalk";
+};
+
+any ['get', 'post'] => '/c/:conferenceName/addtalk' => sub {
+    my $user = session 'user';
+    send_error("未登录", 401) unless $user;
+    my $conferenceName = param 'conferenceName';
+    my $conference = db->coll('conferences')->find_one({name => $conferenceName});
+    send_error("没有这个会议", 404) unless $conference;
+
+    my @talks = db->coll('talks')->find({user_id => $user->{_id}, conference_id => $conference->{_id}, status => {'$ne' => 'deleted' }})->sort([createAt => 1])->all();
+
+    if (request->method() eq 'POST') {
+        my $title = param 'title';
+        my $mobile = param 'mobile';
+        my $timelength = param 'timelength';
+        my $description = param 'description';
+        eval {
+            check_required($title, '标题必须填写');
+            check_required($mobile, '手机号必须填写');
+            check_required($timelength, '时长必须选择');
+            check_required($description, '描述必须填写');
+            check_tel($mobile, '手机号格式不正确（应为11位数字)');
+            check_choice($timelength, ['20', '40', '5'], "时长不正确");
+        };
+        unless ($@) {
+            db->coll('talks')->insert_one({title => $title, mobile => $mobile, timelength => $timelength, description => $description, user_id => $user->{_id}, conference_id => $conference->{_id}, createAt => time, updateAt => time});
+            db->coll('news')->insert_one({msg => $user->{nick} . " 提交了演讲：" . $title, createAt => time });
+            return template 'success' => {page_title => "提交演讲成功", page_channel => "talk", msg => "提交演讲成功，请尽快准备", redirect_url => '/c/' . $conferenceName };
+        }
+    }
+
+    template 'addtalk' => {page_title => "提交演讲", page_channel => "talk", talks => \@talks };
 };
 
 any ['get', 'post'] => '/c/:conferenceName/join' => sub {

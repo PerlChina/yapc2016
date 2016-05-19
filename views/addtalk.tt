@@ -1,0 +1,55 @@
+<div class="page-header">
+    <h2>提交演讲</h2>
+</div>
+
+<h3>已提交演讲</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>标题</th>
+            <th>时长</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        [% FOREACH item IN talks %]
+            <tr><td>[% item.title %]</td><td>[% item.timelength %]</td><td><a href="/c/[% session.conference.name %]/deltalk/[% item.item('_id') %]" onclick="return confirm('确认要删除该演讲吗？[% item.title %]');" class="btn btn-danger btn-sm">删除</td></tr>
+        [% END %]
+    </tbody>
+</table>
+
+
+<hr>
+
+<h3>提交新演讲</h3>
+[% IF vars.error %]
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>错误！</strong>[% vars.error %]
+    </div>
+[% END %]
+<form method="POST">
+    <div class="form-group">
+        <label>演讲主题</label>
+        <input type="text" class="form-control" name="title" placeholder="演讲主题" maxlength="100" value="[% params.title %]">
+    </div>
+    <div class="form-group">
+        <label>手机号（方便主委会与您联系）</label>
+        <input type="tel" class="form-control" name="mobile" placeholder="手机号（方便主委会与您联系）" maxlength="11" value="[% params.mobile %]">
+    </div>
+    <div class="form-group">
+        <label>时长</label>
+        <select class="form-control" name="timelength">
+            <option value="">- 请选择 -</option>
+            [% FOREACH item = [ ['20', '20分钟'], ['40', '40分钟'], ['5', '闪电演讲'] ] %]
+                <option value="[% item.0 %]"[% IF params.timelength == item.0 %] selected[% END %]>[% item.1 %]</option>
+            [% END %]
+        </select>
+    </div>
+    <div class="form-group">
+        <label>简单介绍</label>
+        <textarea class="form-control" name="description" placeholder="简单介绍" rows="5">[% params.description %]</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">提交演讲</button>
+</form>
+
