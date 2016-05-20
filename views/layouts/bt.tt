@@ -88,6 +88,9 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">赞助/合作</h3>
+                            <ul>
+                                <li>微信公众号：perlcoder</li>
+                            </ul>
                         </div>
                         <div class="panel-body">
                         </div>
