@@ -81,18 +81,16 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-md-10">
+                <div class="col-sm-8 col-md-9">
                     [% content %]
                 </div>
-                <div class="col-sm-4 col-md-2">
+                <div class="col-sm-4 col-md-3">
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">赞助/合作</h3>
-                            <ul>
-                                <li>微信公众号：perlcoder</li>
-                            </ul>
                         </div>
                         <div class="panel-body">
+                            <p>微信公众号：perlcoder</p>
                         </div>
                     </div>
 
