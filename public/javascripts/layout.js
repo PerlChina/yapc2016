@@ -55,6 +55,7 @@ function api_request(method, url, data, success_cb, failed_cb) {
             $(".js-login-links").hide();
             $(".js-user-links").show();
             alert("登录成功");
+            window.location.reload(true);
         }, function(error) {
             $("span", loginErrorDiv).text(error);
             loginErrorDiv.show();
@@ -75,6 +76,7 @@ function api_request(method, url, data, success_cb, failed_cb) {
             $(".js-login-links").hide();
             $(".js-user-links").show();
             alert("注册成功");
+            window.location.reload(true);
         }, function(error) {
             $("span", registerErrorDiv).text(error);
             registerErrorDiv.show();
@@ -99,6 +101,7 @@ function api_request(method, url, data, success_cb, failed_cb) {
             api_get("/api/user/logout", {}, function(o) {
                 $(".js-user-links").hide();
                 $(".js-login-links").show();
+                window.location.reload(true);
                 //window.location = "/";
             });
         }

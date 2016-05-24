@@ -51,8 +51,10 @@
                         <li[% IF page_channel == 'schedule' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/schedule">日程</a></li>
                         <li[% IF page_channel == 'address' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/address">地址</a></li>
                         <li[% IF page_channel == 'live' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/live">直播</a></li>
-                        <li[% IF page_channel == 'join' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/join">报名</a></li>
-                        <li[% IF page_channel == 'talk' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/addtalk">提交演讲</a></li>
+                        [% IF session.user %]
+                            <li[% IF page_channel == 'join' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/join">报名</a></li>
+                            <li[% IF page_channel == 'talk' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/addtalk">提交演讲</a></li>
+                        [% END %]
                         <li[% IF page_channel == 'sponsor' %] class="active"[% END %]><a href="/c/[% session.conference.name %]/sponsor">赞助</a></li>
                         <!--
                         <li class="dropdown">
