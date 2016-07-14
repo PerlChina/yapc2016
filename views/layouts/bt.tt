@@ -84,7 +84,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-md-9">
-                    [% content %]
+                    <h4>由于未能邀请到足够的演讲，本次Perl大会取消。给大家造成的不便尽请谅解。我们明年再见。</h4>
                 </div>
                 <div class="col-sm-4 col-md-3">
                     <div class="panel panel-success">
@@ -92,7 +92,7 @@
                             <h3 class="panel-title">赞助/合作</h3>
                         </div>
                         <div class="panel-body">
-                            <p>微信公众号：perlcoder</p>
+                           
                         </div>
                     </div>
 
