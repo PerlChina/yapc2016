@@ -1,0 +1,9 @@
+FROM api6.hukaa.com:5000/hukaa_www:1.1
+
+COPY . /data/app/yapc2016
+WORKDIR /data/app/yapc2016
+
+RUN rm -rf .git
+RUN mkdir logs
+
+CMD ["bin/start.sh"]

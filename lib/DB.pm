@@ -14,7 +14,7 @@ our $_db;
 
 sub db {
     if (!$_db) {
-        $_connection = MongoDB->connect('mongodb://localhost');
+        $_connection = MongoDB->connect('mongodb://mongo');
         $_db = $_connection->get_database(setting('mongodb_name'));
     }
     return $_db;
